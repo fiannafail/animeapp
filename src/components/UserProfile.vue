@@ -3,15 +3,15 @@
         <v-flex xs8>
             <v-card>
                 <v-card-title>
-                    <button @click="get()">kk</button>
                     <h3 class="headline mb-0">{{ user.login }}</h3>
                 </v-card-title>
                 <v-card-text>
                     <p>{{ user.email }}</p>
+                    <h3 class="headline">Currently Watching</h3>
                      <v-layout row wrap v-for="(item, index) in watchingAnimes" v-bind:key="index"> 
                         <v-flex xs4><p class="subheading">{{ item.anime }}</p></v-flex>
                         <v-flex xs6>
-                           <v-progress-linear :value="item.minutesLeft ? 100 / (item.episodeLength * item.episodeCount) * item.minutesLeft : 0" height="15" color="primary"></v-progress-linear>
+                           <v-progress-linear :value="item.minutesLeft ? 100 - (100 / (item.episodeLength * item.episodeCount) * item.minutesLeft) : 0" height="15" color="primary"></v-progress-linear>
                         </v-flex>
                        <v-flex xs2>
                           <div>{{ item.minutesLeft ? item.minutesLeft / item.episodeLength + ' / ' +  item.episodeCount + ' ep.' : '' }}</div>
@@ -39,13 +39,6 @@ export default {
       }
   },
   methods: {
-      get(){
-          
-          let favoriteAnimesTitles = () => {
-              return this.$store.state.favoriteAnimesTitles
-          }
-          console.log(this.favoriteAnimesTitles)
-      }
   },
   computed: {
       watchingAnimes(){
