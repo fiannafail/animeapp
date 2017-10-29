@@ -1,12 +1,14 @@
 <template>
   <div>
       <v-flex v-bind="{ 'xs9' : leftDrawer, 'offset-xs3' : leftDrawer }">
-         <v-layout row wrap>
-            <v-flex xs3>
+         <v-layout row wrap lasts>
+            <v-flex xs4 right>
                <v-card>
+                 <v-card-title class="headline"><v-icon left color="red darken-3">favorite</v-icon> Last added by users </v-card-title>
+                 <v-divider></v-divider>
                   <v-card-text>
                      <p v-for="(item, index) in lastFavoritesData" v-bind:key="index">
-                        {{ item.anime }}
+                        <span class="bold">{{ item.anime }}</span> was added by <router-link :to="{ name: 'user', params: { id: item.uid } }"><span class="bold">{{ item.login }}</span></router-link>
                      </p>
                   </v-card-text>
                </v-card>
@@ -133,8 +135,18 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.lasts i {
+   margin-right: 10px;
+}
+.navigation-drawer--absolute {
+    position: fixed;
+}
+a {
+  span {
+    font-size: 14px;
+  }
+}
 * {
-  font-size: 16px;
   p {
     font-size: 14px;
   }

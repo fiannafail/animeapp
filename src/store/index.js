@@ -164,7 +164,8 @@ const store = new Vuex.Store({
 		 let array = {
 			 anime: title,
 			 timestamp: timeInMs,
-			 login: this.state.user.uid,
+			 uid: this.state.user.uid,
+			 login: this.state.user.login,
 			 key: Key
 		 };
 		 let updates = {}
