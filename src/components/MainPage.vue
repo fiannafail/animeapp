@@ -3,7 +3,13 @@
       <v-flex v-bind="{ 'xs9' : leftDrawer, 'offset-xs3' : leftDrawer }">
          <v-layout row wrap>
             <v-flex xs3>
-               <v-card></v-card>
+               <v-card>
+                  <v-card-text>
+                     <p v-for="(item, index) in lastFavoritesData" v-bind:key="index">
+                        {{ item.anime }}
+                     </p>
+                  </v-card-text>
+               </v-card>
             </v-flex>
          </v-layout>
       <h2 class="headline">Top rated Animes</h2>
@@ -70,6 +76,9 @@ export default {
 		}
   },
 	methods: {
+      gett(){
+         //console.log(this.lastFavorites)
+      },
       leftColumn(index){
          this.$store.dispatch('showLeftColumn', index)
          console.log(this.leftDrawer)
@@ -107,6 +116,7 @@ export default {
 	},
 	created() {
       this.$store.dispatch('getTop')
+      this.$store.dispatch('getLastFavorites')
 	},
 	computed: {
       topAnimeData() {
@@ -114,6 +124,9 @@ export default {
      },
       leftDrawerData() {
          return this.$store.getters.leftDrawerData 
+     },
+      lastFavoritesData() {
+         return this.$store.state.lastFavoritesData 
 	  },
 
 	}

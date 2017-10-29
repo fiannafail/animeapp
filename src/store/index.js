@@ -35,7 +35,8 @@ const store = new Vuex.Store({
 		minutesArr: [],
 		watchedData: [],
 		watchingsKeys: [],
-		watchingAnimes: []
+		watchingAnimes: [],
+		lastFavoritesData: []
 	},
 	mutations: {
 		set(state, {type, items}) {
@@ -159,24 +160,36 @@ const store = new Vuex.Store({
 			let id = data[order].id
          console.log(title, id)
          var timeInMs = Date.now()
-         firebase.database().ref('favorities/' + this.state.user.uid).update({
-            anime: title,
-            timestamp: timeInMs,
-            login: this.state.user.uid
-		 })
 		 let Key = firebase.database().ref().child('favorities/' + this.state.user.uid).push().key
 		 let array = {
 			 anime: title,
-			 episodeCount: tobeAdd.attributes.episodeCount,
 			 timestamp: timeInMs,
 			 login: this.state.user.uid,
 			 key: Key
 		 };
 		 let updates = {}
-		 updates['favorities/' + this.state.user.uid + Key] = array
+		 updates['favorities/' + Key] = array
 		 firebase.database().ref().update(updates)
-
+			firebase.database().ref('users/' + this.state.user.uid + '/data').push({
+				anime: title,
+				id: id,
+				login: this.state.user.uid
+			})
 			},
+			getLastFavorites({ commit }){
+				let playersRef = firebase.database().ref("favorities/");
+				let playersData = [];
+				let pageCursor;
+				let lastFavorites = []
+				playersRef.orderByChild("timestamp").on("child_added", data => {
+					playersData = [data] + playersData;
+					lastFavorites.push(data.val())
+					const lastFavoritesData = lastFavorites.reverse()
+					commit('set', { type: 'lastFavoritesData', items: lastFavoritesData })
+				})
+				
+			},
+
 			show({ commit }) {
 				var showPanel = true;
 				commit('set', { type: 'showPanel', items: showPanel })
