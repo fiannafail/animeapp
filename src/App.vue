@@ -19,23 +19,18 @@
                     <v-list-tile><router-link to="/sign-in"><v-btn small color="primary">Sign In with Email<img width="20" class="email icon--right" src="//www.gstatic.com/mobilesdk/160409_mobilesdk/images/auth_service_email.svg"></svg></v-btn></router-link></v-list-tile>
                     
                   </v-list>
-                </v-menu>
-							
-								
+                </v-menu> 
 								<router-link to="/sign-up">
 									<v-btn flat class="" type="button" name="button" @click="switchSign('sign-up')">Регистрация</v-btn>
 								</router-link>
 							</div>
 							<div v-else>
-                     <router-link to="/search">
-                        <v-btn flat class="" type="button" name="button">Search</v-btn>
-                     </router-link>
-                      <v-btn dark color="indigo" dark>{{ user.login }}</v-btn>
-  
-                           <v-btn flat color="primary" @click="SignOut">Sign Out</v-btn>
-                        <router-link :to="{ name: 'user', params: { id: user.uid } }"><span class="ml-4">{{ user.login }}</span></router-link>
-  
-								
+                <router-link to="/search">
+                  <v-btn flat class="" type="button" name="button">Search</v-btn>
+                </router-link>
+                  <v-btn dark color="indigo" dark>{{ user.login }}</v-btn>
+                  <v-btn flat color="primary" @click="SignOut">Sign Out</v-btn>
+                  <router-link :to="{ name: 'user', params: { id: user.uid } }"><span class="ml-4">{{ user.login }}</span></router-link>
 							</div>
 						</form>
          </v-toolbar-items>

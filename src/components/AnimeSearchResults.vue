@@ -102,9 +102,9 @@ export default {
 
 		setNewTimming(el,key){
 			let thatLength = ''
-			console.log(this.minutesArrConst[el].minutes, this.minutesArr[el].minutes, this.lenghtArr[el].length, key)
+			console.log(this.minutesArr[el].minutes, this.lenghtArr[el].length, key)
 			if(key) {
-				thatLength = this.watchedData[el] - this.lenghtArr[el].length * key
+				thatLength = this.minutesArr[el].minutes - this.lenghtArr[el].length * key
 				console.log(this.watchingsKeys)
 				console.log(this.minutesArr[el])
 				this.minutesArr[el].left = thatLength
@@ -117,6 +117,7 @@ export default {
 				}
 				const Key = keysIndex[el]
 				console.log(Key)
+				console.log(thatLength)
 				firebase.database().ref('users/' + this.user.uid + '/watching/' + Key).update({
 					minutesLeft: thatLength
 				})
