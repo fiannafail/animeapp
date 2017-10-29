@@ -34,7 +34,8 @@ const store = new Vuex.Store({
 		countArr: [],
 		minutesArr: [],
 		watchedData: [],
-		watchingsKeys: []
+		watchingsKeys: [],
+		watchingAnimes: []
 	},
 	mutations: {
 		set(state, {type, items}) {
@@ -331,7 +332,21 @@ const store = new Vuex.Store({
            console.log(favoriteAnimesTitles)
            commit('set',{ type: 'favoriteAnimesTitles', items: favoriteAnimesTitles })
          })
-       },
+	   },
+	   getUserWatchingsAnime({ commit }, uid){
+			firebase.database().ref('/users/' + uid + '/watching').once('value')
+			.then( spanshot => {
+			let watchingAnimes = []
+			spanshot.forEach( (child) => {
+				const key = child.key
+				const childData = child.val()
+				watchingAnimes.push(childData)
+				})
+				console.log(watchingAnimes)
+
+				commit('set',{ type: 'watchingAnimes', items: watchingAnimes })
+			})
+	   },
 		 removeAnime({ commit }, number) {
 			 for (let index in this.state.resultsId) {
 				 if (index == number) {
