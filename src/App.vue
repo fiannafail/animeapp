@@ -9,7 +9,7 @@
          <v-spacer></v-spacer>
          <v-toolbar-side-icon class="hidden-md-and-up"></v-toolbar-side-icon>
          <v-toolbar-items class="hidden-sm-and-down">
-					<form class="form-inline d-flex justify-content-end"> 
+					<form class="form-inline d-flex justify-content-end">  
 							<div v-if="userIsAuthenticated == false">
                 <v-menu content-class="d-flex" offset-y absolute :position-y="64">
                   <v-btn color="primary" dark slot="activator">Sign In</v-btn>
