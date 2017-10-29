@@ -3,7 +3,7 @@
       <v-toolbar color="white">
          <v-toolbar-title>
             <router-link to="/">
-            Title
+            Titl
             </router-link>
          </v-toolbar-title>
          <v-spacer></v-spacer>
