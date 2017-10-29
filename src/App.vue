@@ -43,12 +43,12 @@
                <router-view v-if="showCard()" class="view three" name="card"></router-view>
 				</v-flex>
           <router-view class="view one col-12"></router-view>
-          <v-flex xs12>
-          <v-layout row wrap class="ma-0">
-            <v-flex xs12>
+          <v-flex xs9>
+          <v-layout row wrap>
+        
               <router-view class="view two" name="search"></router-view>
               <router-view class="view three" name="results"></router-view>
-            </v-flex>
+         
           </v-layout>
           </v-flex>
 			</v-layout>

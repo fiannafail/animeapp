@@ -36,15 +36,12 @@
 					</transition>
 				</span>
 					<v-btn v-if="showWatching(key) !== true" icon ripple slot="activator"  @click="startWatchig(key)">
-						<v-icon color="grey lighten-1">watch_later</v-icon>
+						<v-icon color="grey lighten-1">play_arrow</v-icon>
 					</v-btn>
 					<transition name="fade">
-						<v-tooltip right v-if="showAdd(key) != true" color="light-blue darken-3 light">
-						<v-btn icon ripple slot="activator" @click="addToFavorities(key)">
-							<v-icon color="grey lighten-1">playlist_add</v-icon>
+						<v-btn v-if="showAdd(key) != true" icon ripple slot="activator" @click="addToFavorities(key)">
+							<v-icon color="grey lighten-1">favorite</v-icon>
 						</v-btn>
-						<span>Add to Favoriries</span>
-						</v-tooltip>
 						<v-btn small outline v-else @click="remove(key)" color="red darken-1">Remove</v-btn>
 					</transition>
 				</div>
@@ -253,6 +250,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.Item .btn--icon {
+	margin-right: 10px;
+}
+.Item .tooltip--right {
+	display: flex;
+    align-items: center;
+}
+.Item .list__tile__action, .Item .list__tile__action > div {
+	height: 65px;
+}
 .normal {
 	font-weight: 400
 }
@@ -263,6 +270,7 @@ export default {
 	min-width: none;
 }
 .Item .input-group {
+	max-width: 190px;
 	padding: 0;
 }
 .Item .btn--flat {
@@ -278,6 +286,12 @@ export default {
 .Item .list__tile__action {
 	flex-direction: row;
 	align-items: flex-start;
+}
+.Item .list__tile__action  > div {
+    align-items: center;
+}
+.Item .list__tile__action  > div > span:first-child {
+	margin-right: 15px;
 }
 .tooltip__content {
    font-weight:700;

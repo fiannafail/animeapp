@@ -1,12 +1,15 @@
 <template>
     <v-layout>
-        <v-flex xs8>
+        <v-flex xs9>
             <v-card>
                 <v-card-title>
-                    <h3 class="headline mb-0">{{ user.login }}</h3>
+                    <h3 class="headline bold mb-0">{{ user.login }}</h3>
                 </v-card-title>
                 <v-card-text>
-                    <p>{{ user.email }}</p>
+                    <p><span class="bold">Email: </span> {{ user.email }}</p>
+                </v-card-text>
+                 <v-divider></v-divider>
+                <v-card-text>
                     <h3 class="headline">Currently Watching</h3>
                      <v-layout row wrap v-for="(item, index) in watchingAnimes" v-bind:key="index"> 
                         <v-flex xs4><p class="subheading">{{ item.anime }}</p></v-flex>
@@ -17,8 +20,10 @@
                           <div>{{ item.minutesLeft ? item.minutesLeft / item.episodeLength + ' / ' +  item.episodeCount + ' ep.' : '' }}</div>
                           <p class="body-2">{{ item.minutesLeft ? item.minutesLeft + ' minutes left' : ''}}</p>
                         </v-flex>
-                        
                      </v-layout>
+                     </v-card-text>
+                     <v-divider></v-divider>
+                     <v-card-text>
                      <h3 class="headline">Favorite Animes</h3>
                     <v-chip v-for="(item, index) in favoriteAnimesTitles" v-bind:key="index" label class="bold" color="grey lighten-2" text-color="grey darken-4">
                         <v-icon left>label</v-icon>{{ item }}

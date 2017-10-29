@@ -163,14 +163,19 @@ const store = new Vuex.Store({
             anime: title,
             timestamp: timeInMs,
             login: this.state.user.uid
-         })
-			firebase.database().ref('users/' + this.state.user.uid + '/data').push({
-				anime: title,
-            id: id,
-            login: this.state.user.uid
-			}).then( () => {
+		 })
+		 let Key = firebase.database().ref().child('favorities/' + this.state.user.uid).push().key
+		 let array = {
+			 anime: title,
+			 episodeCount: tobeAdd.attributes.episodeCount,
+			 timestamp: timeInMs,
+			 login: this.state.user.uid,
+			 key: Key
+		 };
+		 let updates = {}
+		 updates['favorities/' + this.state.user.uid + Key] = array
+		 firebase.database().ref().update(updates)
 
-				})
 			},
 			show({ commit }) {
 				var showPanel = true;

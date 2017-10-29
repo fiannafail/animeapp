@@ -1,23 +1,28 @@
 <template>
   <div>
-     <v-flex v-bind="{ 'xs9' : leftDrawer, 'offset-xs3' : leftDrawer }">
-		<h2 class="headline">Top rated Animes</h2>
-		<v-layout row wrap top-cards>
-			<v-flex v-for="(item, index) in topAnimeData" v-bind:key="index" xs2 v-bind="{ 'xs3' : leftDrawer }">
-			<v-card>
-				<v-card-title primary-title @click="leftColumn(index)">
-					<div>
-						<p class="mb-0 bold">{{ item.title }}</p>
-					</div>
-			</v-card-title>
-				<img @click="leftColumn(index)" :src="item.image" width="100%">
-				<v-card-text>
-					<star-rating :increment="0.01" :rating="item.rating" :read-only="true" :max-rating="10" :star-size="13"></star-rating>
-				</v-card-text>
-			</v-card>
-		</v-flex>
-      
-		</v-layout>
+      <v-flex v-bind="{ 'xs9' : leftDrawer, 'offset-xs3' : leftDrawer }">
+         <v-layout row wrap>
+            <v-flex xs3>
+               <v-card></v-card>
+            </v-flex>
+         </v-layout>
+      <h2 class="headline">Top rated Animes</h2>
+      <v-layout row wrap top-cards>
+         <v-flex v-for="(item, index) in topAnimeData" v-bind:key="index" xs2 v-bind="{ 'xs3' : leftDrawer }">
+         <v-card>
+            <v-card-title primary-title @click="leftColumn(index)">
+               <div>
+               <p class="mb-0 bold">{{ item.title }}</p>
+               </div>
+            </v-card-title>
+            <img @click="leftColumn(index)" :src="item.image" width="100%">
+            <v-card-text>
+               <star-rating :increment="0.01" :rating="item.rating" :read-only="true" :max-rating="10" :star-size="13"></star-rating>
+            </v-card-text>
+         </v-card>
+         </v-flex>
+        
+      </v-layout>
       </v-flex>
        <v-navigation-drawer
          v-model="leftDrawer"

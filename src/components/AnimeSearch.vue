@@ -1,19 +1,19 @@
 <template>
  <v-flex xs12>
-			<v-card>
-				<v-card-text>
-					<v-layout row wrap align-center>
-						<v-flex >
-							<v-text-field hide-details type="text" class="input-alternate" id="form1" placeholder="Enter title you want to watch" v-model="query"></v-text-field>
-						</v-flex>
+	<v-card>
+		<v-card-text>
+			<v-layout row wrap align-center>
+				<v-flex >
+					<v-text-field hide-details type="text" class="input-alternate" id="form1" placeholder="Enter title you want to watch" v-model="query"></v-text-field>
+				</v-flex>
+
+					<v-btn dark color="primary" @click="search()" class="m-0">
+						Search<v-icon dark right>fa-search</v-icon>
+				</v-btn>
 	
-							<v-btn dark color="primary" @click="search()" class="m-0">
-								Search<v-icon dark right>fa-search</v-icon>
-						</v-btn>
-			
-					</v-layout>
-				</v-card-text>
-			</v-card>
+			</v-layout>
+		</v-card-text>
+	</v-card>
 		
   </v-flex>
 </template>
